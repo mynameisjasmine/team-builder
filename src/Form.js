@@ -4,7 +4,21 @@ import React, { useState } from 'react';
 
 
 function Form() { 
-const [data, setData] = useState( "" );
+const [data, setData] = useState({ name: "", email: "", role: ""});
+
+
+function changeEvent(event) {
+    const userData = { ...data, [event.target.name]: event.target.value };
+    console.log(
+    "changeEvent",
+      event.target.name,
+      event.target.value,
+    
+    );
+    setData();
+}
+
+
 return(
  <form>
      <fieldset>
@@ -16,15 +30,19 @@ return(
              type="text"
              name="name"
              placeholder="Please enter your name"
+             value={data.name}
+             onChange={changeEvent}
              
              />
          </div>
          Email address
          <div className="email-field">
              <input 
-             type="text"
+             type="email"
              name="email"
              placeholder="Enter email"
+             value={data.email}
+             onChange={changeEvent}
              
              />
          </div>
@@ -34,6 +52,8 @@ return(
              type="text"
              name="role"
              placeholder="What is youre role?"
+             value={data.role}
+             onChange={changeEvent}
              
              />
          </div>
