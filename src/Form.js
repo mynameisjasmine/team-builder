@@ -9,18 +9,19 @@ const [data, setData] = useState({ name: "", email: "", role: ""});
 
 function changeEvent(event) {
     const userData = { ...data, [event.target.name]: event.target.value };
-    console.log(
-    "changeEvent",
-      event.target.name,
-      event.target.value,
-    
-    );
-    setData();
+    console.log("changeEvent", event.target.name, event.target.value, userData);
+    setData(userData);
+}
+
+function handleEvent(event) {
+ event.preventDefault();
+ console.log('Data:', data);
+
 }
 
 
 return(
- <form>
+ <form onSubmit={handleEvent}> 
      <fieldset>
          <legend>Form</legend>
          <div>
@@ -51,7 +52,7 @@ return(
              <input 
              type="text"
              name="role"
-             placeholder="What is youre role?"
+             placeholder="What is your role?"
              value={data.role}
              onChange={changeEvent}
              
