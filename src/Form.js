@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 
 
 
-function Form() { 
+
+function Form(props) { 
 const [data, setData] = useState({ name: "", email: "", role: ""});
+
 
 
 function changeEvent(event) {
@@ -15,19 +17,25 @@ function changeEvent(event) {
 
 function handleEvent(event) {
  event.preventDefault();
+props.addUser(data)
+ setData({name: "", email: "", role: ""})
  console.log('Data:', data);
 
 }
 
 
 return(
+
+    
  <form onSubmit={handleEvent}> 
      <fieldset>
-         <legend>Form</legend>
+         
          <div>
-         Employee Name
+         <label htmlFor="name">Employee Name</label>
          <div className="name-field">
+         
              <input 
+             id="name"
              type="text"
              name="name"
              placeholder="Please enter your name"
@@ -36,9 +44,10 @@ return(
              
              />
          </div>
-         Email address
+         <label htmlFor="email">Email address</label>
          <div className="email-field">
              <input 
+             id="email"
              type="email"
              name="email"
              placeholder="Enter email"
@@ -47,9 +56,10 @@ return(
              
              />
          </div>
-         Role
+         <label htmlFor="role">Role</label>
          <div className="role-field">
              <input 
+             id="role"
              type="text"
              name="role"
              placeholder="What is your role?"
@@ -64,6 +74,8 @@ return(
          </button>
      </fieldset>
  </form>
+
+     
 )
 
 }
